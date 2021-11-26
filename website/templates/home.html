@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block maincontent %}
+<style>
+.float-container {
+
+  width: 30%;
+  float: left;
+  padding: 20px;
+  border: 2px solid white;
+  overflow: auto;
+}
+
+.float-child {
+  width: 70%;
+  margin: auto;
+  padding: 5px;
+  background-color: whitesmoke;
+  overflow:auto;
+}  
+</style>
+ <style>
+.card{
+    border-radius: 4px;
+    height: 400px;
+    padding: 20px;
+    width:50%;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+  padding: 14px 80px 18px 36px;
+  cursor: pointer;
+}
+
+.card:hover{
+     transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.card h3{
+  font-weight: 600;
+}
+
+.card img{
+  top: 20px;
+  right: 15px;
+  max-height: 90px;
+  max-width: 120px;
+}
+
+.card-1{
+  background-image: url(https://ionicframework.com/img/getting-started/ionic-native-card.png);
+      background-repeat: no-repeat;
+    background-position: right;
+    background-size: 80px;
+}
+@media(max-width: 990px){
+  .card{
+    margin: 20px;
+  }
+} 
+</style>
+<body>
+<div class="float-container">
+  <h3>Blog</h3>
+  <a href="http://localhost:8000/website/postpage"><button class="btn btn-outline-warning  btn-sm" type="submit" ><i class="far fa-plus-square"></i> New</button></a>
+  <div class="dropdown-divider"></div>
+<h5>Recent activity</h5>
+<div class="row ml-auto">
+
+
+{% for x in img %}
+
+<strong class="text-primary"> .{{x.user}} / {{x.slug|truncatechars:30}}<br></strong>
+{% endfor %}
+</div>
+</div>
+
+  
+<div class="float-child">
+  <div class="row">
+    {% for x in img%}
+    <div class="col-sm-4 mt-4">
+      <div class="card card-1 d-flex" style="width: 18rem;">
+        <strong class="text-primary">{{x.title}}'s Blog</strong>
+        <img src="{{x.file.url}}" alt="" class="card-img-top">
+        {{x.date_created}}
+        <br>
+        <strong class="text-primary"> by {{x.user}}</strong>
+        <br>
+       <div class="container mb-5">
+        {{x.content|truncatechars:100}}
+        </div>
+
+
+        <div class="dropdown-divider"></div>
+        <a href="{% url 'postdetail' x.id  %}"><button class="btn btn-outline-warning btn-sm "  type="submit" style=position:sticky><i class="fab fa-readme"></i> Read More</button></a>
+ <br>
+  <a href="{% url 'like' x.id  %}"><button class="btn btn-outline-danger btn-sm ml-1 " type="submit"style=position:sticky ><i class="far fa-heart"></i></button></a>
+
+    </div>
+    </div>
+    
+{% endfor %}
+  
+</body>
+
+{% endblock %}

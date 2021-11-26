@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags  %}
+{% block maincontent %}
+{% load static %}
+<style>
+	body { 
+	  background-image: url("{% static 'photo.jpg' %}");
+	  background-repeat: repeat;
+	  background-attachment: fixed;
+	  background-position: center; 
+	}
+	</style>
+<div class="body">
+<div class="container my-4">
+
+<p style="color:rgb(147, 210, 247); font-size:50px;"> Let's Make Something Good Together</p>
+<p style="color:whitesmoke; font-size: 30px;">   Blog for everyones,Millions of blogs here</p>
+
+<a href="http://localhost:8000/website/signinpage"><button class="btn btn-outline-warning  btn-lg btn-medium" type="submit" ><i class="fas fa-sign-in-alt"></i> Signin</button></a>
+
+
+</div>
+</div>
+
+
+
+{% endblock %}

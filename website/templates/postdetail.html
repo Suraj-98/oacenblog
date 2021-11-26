@@ -1,0 +1,99 @@
+{% extends "base.html"%}
+{% block maincontent %}
+{% load crispy_forms_tags  %}
+{% load static %}
+<style>
+	.myDiv2 {
+        background-color: whitesmoke;
+  border: 5px outset whitesmoke(216, 253, 130);
+  height: 15px;
+  width: 25%;
+  margin-bottom:3px;
+  margin-top: 5px;
+  margin-left: 5px;
+  	  text-align: center;
+	}
+  .myDiv3{
+    background-color: whitesmoke;
+    text-align: center;
+  }
+	</style> 
+<style>
+#button2 {
+  position: inherit;
+  top: 120px;
+  right: 80px;
+}
+</style>
+<style>
+	.myDiv {
+        background-color: white;
+  border: 5px outset white(216, 253, 130);
+  	  
+	}
+ 
+
+	</style>
+
+
+
+
+
+
+<div class="myDiv">
+
+{% for post in post %}
+
+<div class="container">
+<h2 class="subtitle">{{post.Title}}</h2>
+<br>
+<img src="{{post.file.url}}" alt="" class="card-img-top">
+<br>
+<small>{{post.date_created}}</small>
+<br>
+<strong class="text-primary">by {{post.user}}</strong>
+<br>
+{{post.content}}
+<div id="button2">
+    <a href="{% url 'delete' post.id  %}"><button class="btn btn-outline-danger btn-sm ml-1 " type="submit"><i class="fas fa-trash-alt"></i></button></a> 
+  </div>
+</div>
+
+{% endfor %}
+</div>
+<div class="container">
+<div class="myDiv2">
+  <div class="alert alert-dark" role="alert" >
+    <h1>Comment</h1>	
+    </div>
+  <table>
+  <form method="POST"  enctype="multipart/form-data">
+      
+      {% csrf_token %}
+      {{form|crispy}}   
+</div>
+
+<br>
+<button class="btn btn-outline-warning"  type="submit" >Post</button>
+
+</table>
+
+
+</form>
+<div>
+  <div class="myDiv3">
+<div class="row my-3">
+{% for cm in cm   %}
+  <div class="col-sm-4 mt-4"></div>
+  <div class="alert alert-dark" role="alert" >
+<strong class="text-primary">{{cm.user}} :-</strong>
+<p class="text-primary"{{cm.date_created}}></p>
+</div>
+
+ {{cm.comment}}
+</div>
+</div>
+  </div>
+{%endfor%}
+</div>
+{% endblock %}

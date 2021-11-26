@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags  %}
+{% block maincontent %}
+<style>
+	.myDiv {
+		background-color: whitesmoke;
+  border: 5px outset whitesmoke(216, 253, 130);
+  height: 400px;
+  width: 35%;
+  	  text-align: center;
+	}
+	</style>  
+
+<div class="container py-5">
+	<div class="myDiv">
+		<div class="alert alert-dark" role="alert" >
+			<h1>Sign in</h1>	
+		  </div>
+	<br>
+	<table>
+	<form method="POST">
+        
+		{% csrf_token %}
+		{{form|crispy}}   
+		
+	
+		
+	
+	
+
+</div>
+<br>
+
+<button class="btn btn-outline-warning btn-md"  type="submit" ><i class="fas fa-sign-in-alt"></i> Sign in</button>
+	<br>
+	if you have't an account <a href="http://localhost:8000/website/signuppage">sign up</a>
+<style>.helptext{
+        visibility: hidden;
+      }
+</style>
+
+
+</form>
+
+</table>
+
+</div>
+
+
+	
+
+
+    
+{%  if request.session %}
+
+<p>{{ request.session.msg }} </p>
+{% endif %}
+
+
+
+{% endblock %}

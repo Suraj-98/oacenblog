@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags  %}
+{% block maincontent %}
+<style>
+	.myDiv {
+		background-color: #2f4353;
+background-image: linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%);
+  border: 5px outset rgb(216, 253, 130);
+  width: 25%;
+  	  text-align: center;
+	}
+	</style> 
+<div class="container py-5" >
+	<div class="myDiv">
+	<h1>Update Your Profile</h1>
+	<table>
+	<form method="POST" enctype="multipart/form-data">
+        
+		{% csrf_token %}
+		{{form1|crispy}}
+		{% csrf_token %}
+		{{form|crispy}}   
+		
+	
+	<br>
+	<button class="btn btn-outline-warning"  type="submit" >Create</button>	
+	
+	
+
+</div>
+
+
+
+</form>
+
+</table>
+</div>
+{% endblock %}

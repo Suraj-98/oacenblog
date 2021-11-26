@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block maincontent %}
+<style>
+	.myDiv {
+	  border: 5px outset whitesmoke(253, 252, 156);
+	  background-color: whitesmoke;
+	  height: 400px;	  
+  width: 35%;  
+  overflow: scroll; 
+	  text-align: center;
+	}
+ 
+</style> 
+<div class="container py-5">
+	<div class="myDiv">
+		<div class="alert alert-dark" role="alert" >
+			<h1>Sign up</h1>	
+		  </div>
+	<br>
+	<form method="POST">
+        <table>
+		{% csrf_token %}
+		                   
+	{% for form in form %}
+	{{form.label_tag}} {{ form}} {{form.error|striptags}}
+	{% endfor %}	
+		
+</table>
+<br>
+<br>
+
+<button class="btn btn-outline-warning"  type="submit">signup</button>
+<br>
+if you have an account <a href="http://localhost:8000/website/signinpage">Sign in</a>
+</div>
+
+<style>.helptext{
+        visibility: hidden;
+      }
+</style>
+
+
+
+</form>
+</div>
+
+  
+
+{% endblock %}
